@@ -1,56 +1,74 @@
 /*
- * Copyright (c) 2020 The ZMK Contributors
+ * Corne wireless (Typeractive) — full keymap backup
+ * Transcribed key-by-key from the live board via ZMK Studio + owner confirmation.
  *
- * SPDX-License-Identifier: MIT
+ * Layers: 0 base · 1 sym_num · 2 mac nav · 3 windows nav (+ 2 reserved for Studio headroom)
+ *
+ * Notes:
+ *  - This board is ZMK Studio-managed; edits made in Studio live in the keyboard's
+ *    settings and override this file unless you do "Restore Stock Settings".
+ *  - mac nav volume uses C_VOL_UP/DN (Studio displayed "Keyboard Volume"); functionally
+ *    identical for volume control. Adjust if you want the exact keyboard-page code.
+ *  - base right-pinky Ctrl/AltG (bottom-right two keys) are best-read; owner noted the
+ *    right-pinky Ctrl isn't used in practice.
  */
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
 
 / {
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-
-            display-name = "Base";
+        base {
+            display-name = "base";
             bindings = <
-&mt LS(LA(LEFT_CONTROL)) ESCAPE  &kp Q  &kp W  &kp E      &kp R     &kp T          &kp Y            &kp U    &kp I                &kp O    &kp P       &kp FSLH
-&mt LS(LA(LCTRL)) TAB            &kp A  &kp S  &lt 1 D    &kp F     &kp G          &kp H            &kp J    &kp K                &kp L    &kp SQT     &kp SEMI
-&kp LSHFT                        &kp Z  &kp X  &kp C      &kp V     &kp B          &kp N            &kp M    &kp COMMA            &kp DOT  &kp LS(N9)  &kp LS(N0)
-                                               &kp EQUAL  &kp LGUI  &lt 1 SPACE    &lt 2 BACKSPACE  &kp RET  &mt RIGHT_ALT MINUS
+&mt LS(LA(LCTRL)) ESC  &kp Q     &kp W  &kp E     &kp R     &kp T          &kp Y     &kp U     &kp I      &kp O    &kp P                 &kp FSLH
+&mt LA(LGUI) TAB       &kp A     &kp S  &lt 1 D   &lt 3 F   &kp G          &kp H     &kp J     &kp K      &kp L    &kp SQT               &kp MINUS
+&kp LSHFT              &lt 2 Z   &kp X  &kp C     &kp V     &kp B          &kp N     &kp M     &kp COMMA  &kp DOT  &mt LS(RS(LCTRL)) N9  &mt RALT N0
+                                        &mt LCTRL EQUAL  &kp LGUI  &lt 1 SPACE    &kp BSPC  &lt 2 RET  &mt RALT SEMI
             >;
         };
 
-        syms_nums {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
-            display-name = "syms_nums";
+        sym_num {
+            display-name = "sym_num";
             bindings = <
-&kp ESC        &kp LS(EXCL)         &kp LS(AT)            &kp LS(POUND)     &kp LS(DLLR)   &kp LS(PRCNT)           &kp N0  &kp NUMBER_1       &kp NUMBER_2       &kp NUMBER_3  &kp LS(N9)            &kp LS(N0)
-&kp GRAVE      &kp LS(CARET)        &kp LS(AMPS)          &kp LS(STAR)      &kp LS(LPAR)   &kp LS(RPAR)            &none   &kp NUMBER_4       &kp N5             &kp NUMBER_6  &kp LEFT_BRACKET      &kp RIGHT_BRACKET
-&kp LS(GRAVE)  &kp LS(NON_US_BSLH)  &kp LS(LEFT_BRACKET)  &kp LC(UP_ARROW)  &kp LC(DOWN)   &kp LS(LG(NUMBER_4))    &none   &kp N7             &kp N8             &kp N9        &kp LS(LEFT_BRACKET)  &kp LS(RIGHT_BRACKET)
-                                                          &kp PAGE_UP       &kp PAGE_DOWN  &none                   &none   &kp LS(LG(EQUAL))  &kp LS(LG(MINUS))
+&kp LS(BSLH)    &kp LS(N1)  &kp LS(N2)    &kp LS(N3)  &kp LS(N5)  &kp LS(N4)        &kp KP_PLUS   &kp N1  &kp N2  &kp N3  &kp LS(LBKT)  &kp LS(RBKT)
+&kp LS(GRAVE)   &kp LS(N6)  &kp LS(BSLH)  &kp LS(N7)  &kp LS(N8)  &kp LS(EQUAL)     &kp KP_MINUS  &kp N4  &kp N5  &kp N6  &kp LBKT      &kp RBKT
+&kp LS(LG(N5))  &kp END     &kp HOME      &kp PG_UP   &kp PG_DN   &kp LS(LG(N4))    &kp EQUAL     &kp N7  &kp N8  &kp N9  &kp LS(N9)    &kp LS(N0)
+                                          &kp LC(UP)  &kp LC(DOWN)  &trans          &trans  &kp N0  &trans
             >;
         };
 
-        navigation {
+        mac_nav {
+            display-name = "mac nav";
             bindings = <
-&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2     &bt BT_SEL 3  &bt BT_CLR          &none  &none          &none         &none       &none  &none
-&none  &none         &none         &kp C_VOLUME_UP  &none         &none               &none  &kp BACKSPACE  &kp UP_ARROW  &kp DELETE  &none  &none
-&none  &none         &kp K_PREV    &kp C_VOL_DN     &kp C_NEXT    &none               &none  &kp LEFT       &kp DOWN      &kp RIGHT   &none  &kp RIGHT_ALT
-                                   &none            &none         &kp C_PLAY_PAUSE    &none  &none          &none
+&trans        &trans  &trans      &bt BT_PRV    &bt BT_NXT  &trans        &trans  &trans     &trans    &trans    &trans  &kp LC(UP)
+&kp C_BRI_UP  &trans  &trans      &kp C_VOL_UP  &trans      &trans        &trans  &kp BSPC   &kp UP    &kp DEL   &trans  &kp LC(DOWN)
+&kp C_BRI_DN  &trans  &kp C_PREV  &kp C_VOL_DN  &kp C_NEXT  &trans        &trans  &kp LEFT   &kp DOWN  &kp RIGHT &trans  &trans
+                                  &trans  &trans  &kp C_PP                &kp LS(LGUI)  &trans  &trans
             >;
+        };
+
+        windows_nav {
+            display-name = "windows nav";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans        &trans  &trans    &trans    &trans     &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans        &trans  &trans    &kp UP    &trans     &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans        &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
+                        &trans  &trans  &trans        &kp LGUI  &trans  &trans
+            >;
+        };
+
+        // Reserved empty layers give ZMK Studio room to add more layers later
+        // without a reflash. Ignored in normal builds.
+        extra_1 {
+            status = "reserved";
+        };
+
+        extra_2 {
+            status = "reserved";
         };
     };
 };
