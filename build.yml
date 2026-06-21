@@ -1,0 +1,9 @@
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    # Pinned to v0.3.0 to MATCH the ZMK version pinned in config/west.yml.
+    # Using @main here while the firmware is on v0.3.0 causes
+    # "KeyError: 'qualifiers'" because the newer workflow runs commands the
+    # older ZMK doesn't support. Keep these two versions in sync.
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3.0
