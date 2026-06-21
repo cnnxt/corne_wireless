@@ -5,13 +5,15 @@ manifest:
     - name: m165437
       url-base: https://github.com/M165437
   projects:
+    # Pinned to the v0.3.0 stable release. Tracking `main` broke the build
+    # ("Invalid BOARD nice_nano_v2") after upstream changes.
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: v0.3.0
       import: app/west.yml
-    # nice-view-gem display module. Pinned to `main` to match ZMK `main`.
+    # nice-view-gem MUST match the ZMK release: ZMK v0.3 -> gem v0.3.0.
     - name: nice-view-gem
       remote: m165437
-      revision: main
+      revision: v0.3.0
   self:
     path: config
